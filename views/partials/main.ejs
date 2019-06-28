@@ -1,0 +1,25 @@
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+  <h1 class="display-4">Pricing</h1>
+  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
+</div>
+
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+
+    <% for (let i = 0; i < products.length; i++) { %>
+
+        <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+                <h4 class="my-0 font-weight-normal"><%= products[i].name %></h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">$ <%= products[i].price %> </h1>
+                <img class="card-text" src="<%= products[i].image %>" style="width: 100%; margin-bottom: 10px;">
+                <a href="/api/product/<%= products[i]._id %>"><button type="button" class="btn btn-primary">Shop now</button></a>
+            </div>
+        </div>
+    
+    <% } %>
+
+  </div>
+</div>

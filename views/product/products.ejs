@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <% include ../partials/head %>
+  <body>
+    
+    <% include ../partials/nav %>
+
+    <div class="row">
+
+        <% for(let i = 0; i < products.length; i++) { %>
+            <% console.log(products[i]) %>
+          <div class="col">      
+              <div class="card" style="width: 18rem;">
+                  <a href="/api/product/<%= products[i]._id %>"> 
+                    <img class="card-img-top" src="<%= products[i].image %>" alt="Card image cap" />
+                  </a> 
+                  <div class="card-body">
+                    <h5 class="card-title">Name:  <%= products[i].name %></h5>
+                    <p class="card-text">Category: <%= products[i].category.name %></p>
+                    <p class="card-text">$  <%= products[i].price %></p>
+                    <a href="/api/product/<%= products[i]._id %>" class="btn btn-primary">Shop</a>
+                  </div>
+              </div>
+          </div>
+
+        <% } %>
+    </div>
+            
+    </div>
+  </body>
+</html>
