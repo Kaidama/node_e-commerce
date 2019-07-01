@@ -1,9 +1,25 @@
 let Product = require("../models/Product");
 
 module.exports = {
-  getAllProducts: params => {
+  getAllProducts: (req, res, next) => {
+
     return new Promise((resolve, reject) => {
-      Product.find(params)
+      const perPage = 9
+      const page = req.params.page || 1
+  
+      Product.find({ })
+        .skip(perPage * page - perPage)
+        .limit(perPage)
+        .exec(function(err, products) {
+          Product.count().exec(function(err, count) {
+            if (err) return next(err);
+            res.render("index", {
+              products: products,
+              current: page,
+              pages: Math.ceil(count / perPage)
+            });
+          });
+        })
         .then(products => {
           resolve(products);
         })
@@ -45,26 +61,6 @@ module.exports = {
           errors.message = error;
 
           reject(errors);
-        });
-    });
-  },
-  paginate: params => {
-    var perPage = 9
-    var page = req.params.page || 1
-
-    return new Promise((resolve, reject) => {
-      Product.find(params)
-        .skip(perPage * page - perPage)
-        .limit(perPage)
-        .exec(function(err, products) {
-          Product.count().exec(function(err, count) {
-            if (err) return next(err);
-            res.render("main/products", {
-              products: products,
-              current: page,
-              pages: Math.ceil(count / perPage)
-            });
-          });
         });
     });
   }
