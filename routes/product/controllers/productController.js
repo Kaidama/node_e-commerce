@@ -2,15 +2,16 @@ let Product = require("../models/Product");
 
 module.exports = {
   getAllProducts: (req, res, next) => {
+    const perPage = 9
+    const page = req.params.page || 1
 
     return new Promise((resolve, reject) => {
-      const perPage = 9
-      const page = req.params.page || 1
-  
+     
       Product.find({ })
         .skip(perPage * page - perPage)
         .limit(perPage)
-        .exec(function(err, products) {
+        .exec()
+        .then(products => {
           Product.count().exec(function(err, count) {
             if (err) return next(err);
             res.render("index", {
@@ -18,11 +19,10 @@ module.exports = {
               current: page,
               pages: Math.ceil(count / perPage)
             });
+            resolve(products);
           });
         })
-        .then(products => {
-          resolve(products);
-        })
+      
         .catch(error => {
           let errors = {};
           errors.status = 500;
