@@ -20,6 +20,7 @@ ProductSchema.plugin(mongoosastic, {
     populate: [
         {
             path: 'category'
+            
         }
     ]
 })

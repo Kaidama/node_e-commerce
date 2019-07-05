@@ -1,53 +1,5 @@
-<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
-  <h1 class="display-4">Pricing</h1>
-  <p class="lead">Quickly build an effective pricing table for your potential customers with this Bootstrap example. It's built with default Bootstrap components and utilities with little customization.</p>
-</div>
-
-<div class="container">
-  <div class="card-deck mb-3 text-center">
-
-    <% products.forEach( product => { %>
-
-        <div class="card mb-4 shadow-sm">
-            <div class="card-header">
-                <h4 class="my-0 font-weight-normal"><%= product.name %></h4>
-            </div>
-            <div class="card-body">
-                <h1 class="card-title pricing-card-title">$ <%= product.price %> </h1>
-                <img class="card-text" src="<%= product.image %>" style="width: 100%; margin-bottom: 10px;">
-                <a href="/api/product/<%= product._id %>"><button type="button" class="btn btn-primary">Shop now</button></a>
-            </div>
-        </div>
-    
-    <% }) %>
-
-  </div>
-  <% if (pages > 0) { %>
-    <ul class="pagination text-center">
-        <% if (current == 1) { %>
-            <li class="disabled"><a>First</a></li>
-        <% } else { %>
-            <li><a href="/1">First</a></li>
-        <% } %>
-        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
-        <% if (i !== 1) { %>
-            <li class="disabled"><a>...</a></li>
-        <% } %>
-        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
-            <% if (i == current) { %>
-                <li class="active"><a><%= i %></a></li>
-            <% } else { %>
-                <li><a href="/<%= i %>"><%= i %></a></li>
-            <% } %>
-            <% if (i == Number(current) + 4 && i < pages) { %>
-                <li class="disabled"><a>...</a></li>
-            <% } %>
-        <% } %>
-        <% if (current == pages) { %>
-            <li class="disabled"><a>Last</a></li>
-        <% } else { %>
-            <li><a href="/products/<%= pages %>">Last</a></li>
-        <% } %>
-    </ul>
-<% } %>
+<div class="jumbotron">
+    <div class="container">
+        <h1 class="display-3 text-center">Best Online Shopping</h1>
+    </div>
 </div>

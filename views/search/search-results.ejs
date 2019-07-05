@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <% include ../partials/head %>
+  <body>
+    
+    <% include ../partials/nav %>
+<% if (products.length > 0 ) { %>
+  
+  <h3>Results for <%= query %> </h3>
+  <div class="row">
+      <% products.forEach( result => { %>
+          <div class="col">      
+              <div class="card" style="width: 18rem;">
+                
+                  <a href="/api/product/<%= result._id %>"> 
+                    <img class="card-img-top" src="<%= result._source.image %>" alt="Card image cap" />
+                  </a> 
+                  <div class="card-body">
+                    <h5 class="card-title">Name:  <%= result._source.name %></h5>
+                    <p class="card-text">Category: <%= result._source.category.name %></p>
+                    <p class="card-text">$  <%= result._source.price %></p>
+                    <a href="/api/product/<%= result._id %>" class="btn btn-primary">Shop</a>
+                  </div>
+              </div>
+          </div>
+          <% })%>
+      </div>
+      <%} else {%>
+        <h3> Search Not Found <h3>
+          <% } %>
+  </body>
+        
+</html>
