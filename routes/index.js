@@ -1,18 +1,12 @@
-var express = require("express");
+var express = require('express');
 var router = express.Router();
-const paginate = require("./product/utils/pagination");
-let productController = require("./product/controllers/productController");
+
+let productController = require('./product/controllers/productController')
+let paginate = require('./product/utils/pagination')
 
 /* GET home page. */
-router.get("/", productController.getPageIfUserLoggedIn);
-router.get("/page/:page", paginate);
-router.get("/test", (req, res) => {
-  res.render("test");
-});
+router.get('/', productController.getPageIfUserLoggedIn);
 
-router.post("/testJquery", (req, res) => {
-  console.log(req.body);
-  res.send({ result: "success" });
-});
+router.get('/page/:page', paginate);
 
 module.exports = router;

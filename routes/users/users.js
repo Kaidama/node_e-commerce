@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport')
-const cartController = require('../cart/controller/cartController')
-
 
 let userController = require('../users/controllers/userController')
+let cartController = require('../cart/controllers/cartController')
 let signupValidation = require('./utils/signupValidation')
 
 /* GET users listing. */
@@ -37,8 +36,6 @@ router.post('/signup', signupValidation, function (req, res) {
                                     confirmation: false,
                                     message: error
                                 })
-                            } else {
-                                // res.redirect('/')
                                 cartController.createUserCart(req, res)
                             }
                         })

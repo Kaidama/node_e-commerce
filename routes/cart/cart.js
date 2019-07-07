@@ -1,10 +1,13 @@
 const express = require('express')
-const router = express.router()
+const router = express.Router()
 
-const cartController = require('../cart/controller/cartController')
 
-const Cart = require('../cart/models/Cart')
-
-router.get('/api/users/cart', (req, res) =>{
-    res.send('Hello world')
+router.get('/', (req, res) => {
+    res.render('cart/cart')
 })
+
+router.get('/')
+
+
+module.exports = router
+

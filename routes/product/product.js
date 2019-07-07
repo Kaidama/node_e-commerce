@@ -34,28 +34,13 @@ router.get('/', function (req, res) {
     res.send('product page')
 })
 
-router.get('/getproductsbycategoryid/:id', function (req, res) {
-    productController.getProductsByCategoryID(req.params.id)
-                        .then(products => {
-                            res.render('product/products', {
-                                products: products
-                            })
-                        })
-                        .catch( error => {
-                            res.status(error.status).json(error)
-                        })
+router.post('/search', (req, res) => {
+    res.redirect('/api/product/search?q=' + req.body.q)
 })
+
 router.get('/search', productController.searchProductByQuery)
 
-router.post('/search', (req, res) =>{
-    
-    
-    res.redirect('/api/product/search?q=' + req.body.q)
-    // console.log(`REQBODY: `, req.body);
-    
-})
 router.post('/instant-search', productController.instantSearch)
-
 
 router.get('/:id', function (req, res) {
     productController.getProductByID(req.params.id)
@@ -69,6 +54,16 @@ router.get('/:id', function (req, res) {
                         })
 })
 
-
+router.get('/getproductsbycategoryid/:id', function (req, res) {
+    productController.getProductsByCategoryID(req.params.id)
+                        .then(products => {
+                            res.render('product/products', {
+                                products: products
+                            })
+                        })
+                        .catch( error => {
+                            res.status(error.status).json(error)
+                        })
+})
 
 module.exports = router

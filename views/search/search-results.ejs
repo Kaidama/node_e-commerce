@@ -1,33 +1,40 @@
 <!DOCTYPE html>
 <html>
+
     <% include ../partials/head %>
+
   <body>
     
     <% include ../partials/nav %>
-<% if (products.length > 0 ) { %>
-  
-  <h3>Results for <%= query %> </h3>
-  <div class="row">
-      <% products.forEach( result => { %>
-          <div class="col">      
-              <div class="card" style="width: 18rem;">
-                
-                  <a href="/api/product/<%= result._id %>"> 
-                    <img class="card-img-top" src="<%= result._source.image %>" alt="Card image cap" />
-                  </a> 
-                  <div class="card-body">
-                    <h5 class="card-title">Name:  <%= result._source.name %></h5>
-                    <p class="card-text">Category: <%= result._source.category.name %></p>
-                    <p class="card-text">$  <%= result._source.price %></p>
-                    <a href="/api/product/<%= result._id %>" class="btn btn-primary">Shop</a>
-                  </div>
-              </div>
-          </div>
-          <% })%>
-      </div>
-      <%} else {%>
-        <h3> Search Not Found <h3>
-          <% } %>
+
+        <br>
+
+        <% if (results.length > 0) { %>
+
+            <h3>Results for <span style="color: red;"><%= query %></span></h3>
+            <% for(let i = 0; i < results.length; i++) { %>
+
+                <div class="row">
+                        <div class="col">      
+                            <div class="card" style="width: 18rem;">
+                                <a href="/api/product/<%= results[i]._id %>"> 
+                                <img class="card-img-top" src="<%= results[i]._source.image %>" alt="Card image cap" />
+                                </a> 
+                                <div class="card-body">
+                                    <h5 class="card-title">Name: <%= results[i]._source.name %></h5>
+                                    <p class="card-text">Category: <%= results[i]._source.category.name %></p>
+                                    <p class="card-text">Price: $ <%= results[i]._source.price %></p>
+                                    <a href="/api/product/<%= results[i]._id %>" class="btn btn-primary">Shop</a>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            <% } %>
+
+        <% } else { %>
+            <h3>Search not found</h3>
+        <% } %>
+
   </body>
-        
 </html>

@@ -1,25 +1,26 @@
-let path         = require('path');
-let logger       = require('morgan');
-let express      = require('express');
-let passport     = require('passport');
-let mongoose     = require('mongoose');
-let createError  = require('http-errors');
-let cookieParser = require('cookie-parser');
+const path         = require('path');
+const logger       = require('morgan');
+const express      = require('express');
+const passport     = require('passport');
+const mongoose     = require('mongoose');
+const createError  = require('http-errors');
+const cookieParser = require('cookie-parser');
 
-let methodOverride = require('method-override')
+const methodOverride = require('method-override')
 
-let indexRouter   = require('./routes/index');
-let usersRouter   = require('./routes/users/users');
-let adminRouter   = require('./routes/admin/admin');
-let productRouter = require('./routes/product/product');
+const indexRouter   = require('./routes/index');
+const usersRouter   = require('./routes/users/users');
+const adminRouter   = require('./routes/admin/admin');
+const productRouter = require('./routes/product/product');
+const cartRouter    = require('./routes/cart/cart')
 
-let flash            = require('connect-flash');
-let session          = require('express-session');
-let expressValidator = require('express-validator');
+const flash            = require('connect-flash');
+const session          = require('express-session');
+const expressValidator = require('express-validator');
 
-let MongoStore = require('connect-mongo')(session);
+const MongoStore = require('connect-mongo')(session);
 
-let Category = require('./routes/product/models/Category')
+const Category = require('./routes/product/models/Category')
 
 require('dotenv').config();
 
@@ -104,6 +105,7 @@ app.use('/',            indexRouter);
 app.use('/api/users',   usersRouter);
 app.use('/api/admin',   adminRouter);
 app.use('/api/product', productRouter);
+app.use('/api/users/cart', cartRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

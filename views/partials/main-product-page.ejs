@@ -1,30 +1,32 @@
 <div class="jumbotron">
     <div class="container">
       <h1 class="display-3 text-center">Best Online Shopping</h1>
-
-      <% include ./instant-search %>
-      
     </div>
-    
+
+    <% include ./instant-search %>
+
 </div>
 
 <div class="row" id="productSearchResults">
 
-    <% for (let i = 0; i < products.length; i++) { %>
+    <% products.forEach( product => {  %>
+    
       <div class="col">      
           <div class="card">
-              <a href="/api/product/getproductbyid/<%= products[i]._id %>"> 
-                <img class="card-img-top" src="<%= products[i].image %>" alt="Card image cap" />
+              <a href="/api/product/<%= product._id %>"> 
+                <img class="card-img-top" src="<%= product.image %>" alt="Card image cap" />
               </a> 
               <div class="card-body">
-                <h5 class="card-title">Name: <%= products[i].name %> </h5>
-                <p class="card-text">Category: <%= products[i].category.name %> </p>
-                <p class="card-text">$ <%= products[i].price %> </p>
-                <a href="/api/product/getproductbyid/<%= products[i]._id %>" class="btn btn-primary">Shop</a>
+                <h5 class="card-title">Name: <%= product.name %> </h5>
+                <p class="card-text">Category: <%= product.category.name %> </p>
+                <p class="card-text">$ <%= product.price %> </p>
+                <a href="/api/product/<%= product._id %>" class="btn btn-primary">Shop</a>
               </div>
           </div>
       </div>
-      <% } %>
+
+    <% }) %>
+
 </div>
 
 <nav aria-label="Page navigation example" class="d-flex justify-content-center">
@@ -46,14 +48,15 @@
             </li>
         <% } %>
       <li>
-        <% for (let i = 1; i <= pages; i++) { %>
 
+        <% for (let i = 1; i <= pages; i++) { %>
           <% if (i === current) { %>
             <li class="page-item disabled"><a class="page-link" href="/page/<%= i %>"> <%= i %> </a></li>
           <% } else { %>
             <li class="page-item"><a class="page-link" href="/page/<%= i %>"> <%= i %> </a></li>
           <% } %>
         <% } %>
+        
       </li>
 
       <% if ( current === pages - 1 ) { %>
@@ -73,7 +76,4 @@
         <% } %>
         
     </ul>
-    </nav>
-
-
-  
+  </nav>
