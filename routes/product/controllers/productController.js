@@ -74,6 +74,7 @@ module.exports = {
                     res.status(errors.status).json(errors)
                 } else {
                     let data = results.hits.hits
+                    console.log(`THE HITS: `, results.hits.hits);
                     
                     res.render('search/search-results', {
                         results: data,
