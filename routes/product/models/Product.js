@@ -15,7 +15,7 @@ let ProductSchema = new mongoose.Schema({
 
 ProductSchema.plugin(mongoosastic, {
     hosts: [
-        "localhost:9200"
+        "https://j5wwmqxni9:18bzv11cq4@pepper-482721284.us-east-1.bonsaisearch.net:443"
     ],
     populate: [
         {
