@@ -67,5 +67,14 @@ router.put('/edit-profile',  (req, res) => {
                         res.redirect('/api/users/edit-profile')
                     })
 })
-
+router.get('/edit-profile', function (req, res) {
+    userController.getProfileWithHistory(req.user._id)
+        .then( user => {
+            res.render('account/profile', {
+                errors:  req.flash('errors'),
+                success: req.flash('success'),
+                user:    user
+            })
+        })
+})
 module.exports = router;

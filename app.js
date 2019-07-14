@@ -7,6 +7,7 @@ const createError   = require("http-errors");
 const cookieParser   = require("cookie-parser");
 const cartMiddleware = require("./routes/cart/utils/cartMiddleware");
 
+require("dotenv").config();
 const methodOverride = require("method-override");
 
 const indexRouter = require("./routes/index");
@@ -22,7 +23,6 @@ const expressValidator = require("express-validator");
 const MongoStore = require("connect-mongo")(session);
 const Category = require("./routes/product/models/Category");
 
-require("dotenv").config();
 
 mongoose
   .connect(process.env.MONGODB_URI, { useNewUrlParser: true })
